@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router ,Routes, Route } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
 import Login from './pages/Login'
 import Registrar from './pages/Registrar'
@@ -19,7 +19,7 @@ function App() {
  
   return (
 
-    <BrowserRouter>
+    <Router>
       <AuthProvider>
         <ProyectosProvider>
           <Routes>
@@ -31,7 +31,7 @@ function App() {
               <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
             </Route>
 
-            <Route  path='/proyectos' element={<RutaProtegida />}>
+            <Route  path='proyectos' element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />
               <Route path='crear-proyecto' element={<NuevoProyecto />} />
               <Route path=':id' element={<Proyecto />} />
@@ -42,7 +42,7 @@ function App() {
           </Routes>
         </ProyectosProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </Router>
   )
 }
 
