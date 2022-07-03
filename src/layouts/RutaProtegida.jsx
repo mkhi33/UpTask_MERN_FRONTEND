@@ -7,9 +7,11 @@ import { useEffect } from "react";
 const RutaProtegida = () => {
 
     const { auth, cargando } = useAuth();
-
+    const params = useParams();
     if( cargando ) {
+      console.log(params)
       return 'cargando...'
+
     }
     console.log(auth)
 

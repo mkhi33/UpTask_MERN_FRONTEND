@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import clienteAxios from '../config/clienteAxios'
 
 const AuthContext = createContext()
@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
     const [ auth, setAuth ] = useState({})
     const [ cargando, setCargando ] = useState(true)
     const navigate = useNavigate()
+    const location = useLocation()
 
 
     useEffect( () => {
@@ -27,7 +28,10 @@ const AuthProvider = ({children}) => {
             try {
                 const { data } = await clienteAxios('/usuarios/perfil', config)
                 setAuth(data)
-                navigate('/proyectos')
+                if(data._id && location.pathname === '/') {
+                    navigate('/proyectos')
+                }
+
             } catch (error) {
                 
             } finally {
